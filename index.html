@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Green Life — Aceite de Oliva y Miel Artesanal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --cream:  #F7F3ED;
+      --gold:   #B8913A;
+      --ink:    #1A1814;
+      --olive:  #5C6B3A;
+      --honey:  #C8751A;
+      --cream2: #EDE8DF;
+      --ff-display: 'Cormorant Garamond', Georgia, serif;
+      --ff-body:    'Jost', system-ui, sans-serif;
+      --transition: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--ff-body);
+      background: var(--cream);
+      color: var(--ink);
+      font-size: 16px;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: var(--cream); }
+    ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 3px; }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+
+    /* ── NAV ── */
+    .nav {
+      position: fixed;
+      inset: 0 0 auto 0;
+      z-index: 100;
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 6%;
+      background: rgba(247,243,237,.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid transparent;
+      transition: border-color var(--transition), box-shadow var(--transition);
+    }
+    .nav.scrolled {
+      border-bottom-color: rgba(184,145,58,.2);
+      box-shadow: 0 4px 24px rgba(26,24,20,.06);
+    }
+    .nav-logo {
+      font-family: var(--ff-display);
+      font-size: 1.55rem;
+      font-weight: 600;
+      letter-spacing: .03em;
+      display: flex;
+      align-items: center;
+      gap: .6rem;
+    }
+    .nav-logo img { width: 38px; height: 38px; border-radius: 50%; object-fit: cover; }
+    .nav-logo span { color: var(--gold); }
+    .nav-links {
+      display: flex;
+      gap: 2.4rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: .825rem;
+      font-weight: 500;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      position: relative;
+      padding-bottom: 2px;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 0; height: 1px;
+      background: var(--gold);
+      transition: width var(--transition);
+    }
+    .nav-links a:hover::after { width: 100%; }
+    .nav-cta {
+      background: var(--ink);
+      color: var(--cream);
+      font-family: var(--ff-body);
+      font-size: .78rem;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      padding: .65rem 1.5rem;
+      border: none;
+      cursor: pointer;
+      transition: background var(--transition);
+      text-decoration: none;
+    }
+    .nav-cta:hover { background: var(--gold); }
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+    }
+    .hamburger span {
+      display: block;
+      width: 24px; height: 1.5px;
+      background: var(--ink);
+      transition: var(--transition);
+    }
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 72px; left: 0; right: 0;
+      background: var(--cream);
+      border-bottom: 1px solid rgba(184,145,58,.2);
+      padding: 1.5rem 6% 2rem;
+      z-index: 99;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      font-size: .95rem;
+      font-weight: 500;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      padding: .5rem 0;
+      border-bottom: 1px solid rgba(26,24,20,.06);
+    }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100svh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      padding-top: 72px;
+    }
+    .hero-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 6rem 5% 6rem 8%;
+      gap: 1.5rem;
+    }
+    .hero-eyebrow {
+      font-size: .72rem;
+      font-weight: 600;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+    .hero-title {
+      font-family: var(--ff-display);
+      font-size: clamp(2.8rem, 4.5vw, 4.2rem);
+      font-weight: 400;
+      line-height: 1.1;
+    }
+    .hero-title em { font-style: italic; color: var(--olive); }
+    .hero-body {
+      font-size: 1rem;
+      font-weight: 300;
+      color: rgba(26,24,20,.65);
+      max-width: 40ch;
+      line-height: 1.75;
+    }
+    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: .6rem;
+      background: var(--ink);
+      color: var(--cream);
+      font-family: var(--ff-body);
+      font-size: .8rem;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      padding: 1rem 2rem;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background var(--transition);
+    }
+    .btn-primary:hover { background: var(--gold); }
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: .6rem;
+      background: transparent;
+      color: var(--ink);
+      font-family: var(--ff-body);
+      font-size: .8rem;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      padding: 1rem 2rem;
+      border: 1.5px solid rgba(26,24,20,.25);
+      cursor: pointer;
+      text-decoration: none;
+      transition: border-color var(--transition), color var(--transition);
+    }
+    .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+    .hero-right {
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-right img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .8s ease;
+    }
+    .hero-right:hover img { transform: scale(1.03); }
+    .hero-badge {
+      position: absolute;
+      bottom: 2.5rem; left: -1rem;
+      background: var(--cream);
+      border: 1px solid rgba(184,145,58,.3);
+      padding: 1rem 1.4rem;
+      display: flex;
+      flex-direction: column;
+      gap: .15rem;
+    }
+    .hero-badge-label {
+      font-size: .68rem;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--olive);
+    }
+    .hero-badge-value {
+      font-family: var(--ff-display);
+      font-size: 1.4rem;
+      font-weight: 400;
+    }
+
+    /* ── MARQUEE ── */
+    .marquee {
+      background: var(--olive);
+      overflow: hidden;
+      white-space: nowrap;
+      padding: .85rem 0;
+    }
+    .marquee-track {
+      display: inline-flex;
+      animation: marquee 24s linear infinite;
+    }
+    .marquee-track:hover { animation-play-state: paused; }
+    .marquee-item {
+      font-size: .72rem;
+      font-weight: 600;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--cream);
+      padding: 0 2.5rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 2.5rem;
+    }
+    .marquee-dot { color: var(--gold); font-size: 1rem; }
+    @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+    /* ── SECCIÓN GENÉRICA ── */
+    .section { padding: 7rem 8%; }
+    .section-header { text-align: center; margin-bottom: 4rem; }
+    .section-label {
+      font-size: .7rem;
+      font-weight: 600;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: .75rem;
+    }
+    .section-title {
+      font-family: var(--ff-display);
+      font-size: clamp(2rem, 3.5vw, 2.8rem);
+      font-weight: 400;
+      line-height: 1.2;
+    }
+    .section-title em { font-style: italic; color: var(--olive); }
+
+    /* ── PRODUCTOS ── */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+    .product-card {
+      background: #fff;
+      border: 1px solid rgba(184,145,58,.1);
+      overflow: hidden;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity .5s ease, transform .5s ease, box-shadow var(--transition);
+    }
+    .product-card.visible { opacity: 1; transform: translateY(0); }
+    .product-card:hover { box-shadow: 0 16px 48px rgba(26,24,20,.1); }
+    .card-img {
+      aspect-ratio: 4/5;
+      overflow: hidden;
+    }
+    .card-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .6s ease;
+    }
+    .product-card:hover .card-img img { transform: scale(1.05); }
+    .card-body { padding: 1.4rem 1.5rem 1.75rem; }
+    .card-cat {
+      font-size: .68rem;
+      font-weight: 600;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: .3rem;
+    }
+    .card-name {
+      font-family: var(--ff-display);
+      font-size: 1.3rem;
+      font-weight: 400;
+      margin-bottom: .4rem;
+    }
+    .card-desc {
+      font-size: .85rem;
+      color: rgba(26,24,20,.55);
+      font-weight: 300;
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+    .card-price {
+      font-family: var(--ff-display);
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    /* ── ABOUT ── */
+    .about { background: var(--cream2); }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: center;
+    }
+    .about-imgs {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    .about-imgs img {
+      width: 100%;
+      aspect-ratio: 3/4;
+      object-fit: cover;
+    }
+    .about-imgs img:first-child { margin-top: 2rem; }
+    .about-content { display: flex; flex-direction: column; gap: 1.5rem; }
+    .about-body {
+      font-size: 1rem;
+      font-weight: 300;
+      color: rgba(26,24,20,.7);
+      line-height: 1.8;
+    }
+    .stats-row { display: flex; gap: 3rem; margin-top: 1rem; padding-top: 2rem; border-top: 1px solid rgba(184,145,58,.2); }
+    .stat { display: flex; flex-direction: column; }
+    .stat-num {
+      font-family: var(--ff-display);
+      font-size: 2.4rem;
+      font-weight: 400;
+      color: var(--olive);
+      line-height: 1;
+    }
+    .stat-label {
+      font-size: .75rem;
+      font-weight: 500;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: rgba(26,24,20,.45);
+      margin-top: .3rem;
+    }
+
+    /* ── CONTACTO / CTA ── */
+    .cta-section {
+      background: var(--ink);
+      color: var(--cream);
+      text-align: center;
+      padding: 7rem 8%;
+    }
+    .cta-label {
+      font-size: .7rem;
+      font-weight: 600;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
+    .cta-title {
+      font-family: var(--ff-display);
+      font-size: clamp(2.2rem, 4vw, 3.5rem);
+      font-weight: 300;
+      line-height: 1.2;
+      margin-bottom: 1.5rem;
+      max-width: 18ch;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .cta-title em { font-style: italic; color: var(--gold); }
+    .cta-sub {
+      font-size: .95rem;
+      font-weight: 300;
+      color: rgba(247,243,237,.55);
+      max-width: 44ch;
+      margin: 0 auto 2.5rem;
+      line-height: 1.75;
+    }
+    .cta-form {
+      display: flex;
+      justify-content: center;
+      gap: 0;
+      max-width: 440px;
+      margin: 0 auto;
+    }
+    .cta-input {
+      flex: 1;
+      background: rgba(247,243,237,.08);
+      border: 1px solid rgba(247,243,237,.2);
+      border-right: none;
+      color: var(--cream);
+      font-family: var(--ff-body);
+      font-size: .9rem;
+      padding: .9rem 1.2rem;
+      outline: none;
+      transition: border-color var(--transition);
+    }
+    .cta-input::placeholder { color: rgba(247,243,237,.3); }
+    .cta-input:focus { border-color: var(--gold); }
+    .cta-btn {
+      background: var(--gold);
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      font-family: var(--ff-body);
+      font-size: .78rem;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      padding: .9rem 1.5rem;
+      transition: background var(--transition);
+    }
+    .cta-btn:hover { background: var(--honey); }
+
+    /* ── FOOTER ── */
+    .footer {
+      background: var(--ink);
+      color: rgba(247,243,237,.6);
+      padding: 4rem 8% 2.5rem;
+      border-top: 1px solid rgba(247,243,237,.06);
+    }
+    .footer-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 2.5rem;
+      border-bottom: 1px solid rgba(247,243,237,.08);
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+    .footer-logo {
+      font-family: var(--ff-display);
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--cream);
+    }
+    .footer-logo span { color: var(--gold); }
+    .footer-nav { display: flex; gap: 2rem; list-style: none; }
+    .footer-nav a {
+      font-size: .82rem;
+      transition: color var(--transition);
+    }
+    .footer-nav a:hover { color: var(--gold); }
+    .footer-social { display: flex; gap: .75rem; }
+    .social-link {
+      width: 36px; height: 36px;
+      border: 1px solid rgba(247,243,237,.15);
+      display: flex; align-items: center; justify-content: center;
+      color: rgba(247,243,237,.5);
+      transition: border-color var(--transition), color var(--transition);
+    }
+    .social-link:hover { border-color: var(--gold); color: var(--gold); }
+    .footer-copy {
+      font-size: .75rem;
+      color: rgba(247,243,237,.25);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1024px) {
+      .products-grid { grid-template-columns: repeat(2, 1fr); }
+      .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .about-imgs { max-width: 480px; }
+    }
+    @media (max-width: 768px) {
+      .nav-links, .nav-cta { display: none; }
+      .hamburger { display: flex; }
+      .hero { grid-template-columns: 1fr; min-height: auto; }
+      .hero-right { height: 55vw; }
+      .hero-left { padding: 3.5rem 6%; }
+      .section { padding: 5rem 6%; }
+      .products-grid { grid-template-columns: 1fr 1fr; gap: 1rem; }
+      .stats-row { gap: 1.5rem; }
+      .footer-top { flex-direction: column; align-items: flex-start; }
+    }
+    @media (max-width: 480px) {
+      .products-grid { grid-template-columns: 1fr; }
+      .cta-form { flex-direction: column; }
+      .cta-input { border-right: 1px solid rgba(247,243,237,.2); border-bottom: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <a href="#" class="nav-logo">
+    <img src="img/logo_oficial.png" alt="Green Life">
+    Green <span>Life</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#productos">Products</a></li>
+    <li><a href="#nosotros">About</a></li>
+    <li><a href="#contacto">Contact</a></li>
+  </ul>
+  <a href="#contacto" class="nav-cta">Get in touch</a>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#productos">Products</a>
+  <a href="#nosotros">About</a>
+  <a href="#contacto">Contact</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <p class="hero-eyebrow">Artisanal · Premium · Chilean</p>
+    <h1 class="hero-title">The best of the land,<br><em>straight</em> to your table</h1>
+    <p class="hero-body">Extra virgin olive oils and artisanal honeys selected with the highest quality standards. From the producer to your home, no middlemen.</p>
+    <div class="hero-actions">
+      <a href="#productos" class="btn-primary">
+        Explore products
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+      <a href="#nosotros" class="btn-outline">Our story</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <img src="img/aceite_real.jpg" alt="Green Life olive oil">
+    <div class="hero-badge">
+      <span class="hero-badge-label">Since</span>
+      <span class="hero-badge-value">2010</span>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span class="marquee-item">Cold pressed<span class="marquee-dot">·</span>Artisanal production<span class="marquee-dot">·</span>No additives<span class="marquee-dot">·</span>Certified origin<span class="marquee-dot">·</span>100% natural<span class="marquee-dot">·</span>Farm to table<span class="marquee-dot">·</span></span>
+    <span class="marquee-item">Cold pressed<span class="marquee-dot">·</span>Artisanal production<span class="marquee-dot">·</span>No additives<span class="marquee-dot">·</span>Certified origin<span class="marquee-dot">·</span>100% natural<span class="marquee-dot">·</span>Farm to table<span class="marquee-dot">·</span></span>
+  </div>
+</div>
+
+<!-- PRODUCTOS -->
+<section class="section" id="productos">
+  <div class="section-header">
+    <p class="section-label">Our selection</p>
+    <h2 class="section-title"><em>Premium</em> products</h2>
+  </div>
+  <div class="products-grid">
+
+    <article class="product-card">
+      <div class="card-img"><img src="img/aceite_real_clean.jpg" alt="Extra Virgin Olive Oil" loading="lazy"></div>
+      <div class="card-body">
+        <p class="card-cat">Olive Oil</p>
+        <h3 class="card-name">Extra Virgin</h3>
+        <p class="card-desc">First cold press, early harvest. Fruity flavor with herbal notes and a bright green color.</p>
+        <span class="card-price">$8.990</span>
+      </div>
+    </article>
+
+    <article class="product-card">
+      <div class="card-img"><img src="img/aceite_real_clean.jpg" alt="Arbequina Olive Oil" loading="lazy"></div>
+      <div class="card-body">
+        <p class="card-cat">Olive Oil</p>
+        <h3 class="card-name">Arbequina</h3>
+        <p class="card-desc">Spanish variety with sweet, almond-like notes. Perfect for dressings and raw dishes.</p>
+        <span class="card-price">$10.990</span>
+      </div>
+    </article>
+
+    <article class="product-card">
+      <div class="card-img"><img src="img/aceite_real_clean.jpg" alt="Picual Olive Oil" loading="lazy"></div>
+      <div class="card-body">
+        <p class="card-cat">Olive Oil</p>
+        <h3 class="card-name">Picual</h3>
+        <p class="card-desc">Intense and robust with characteristic bitter and peppery notes. Ideal for hot dishes.</p>
+        <span class="card-price">$9.490</span>
+      </div>
+    </article>
+
+    <article class="product-card">
+      <div class="card-img"><img src="img/miel_real_clean.jpg" alt="Ulmo Honey" loading="lazy"></div>
+      <div class="card-body">
+        <p class="card-cat">Honey</p>
+        <h3 class="card-name">Ulmo Honey</h3>
+        <p class="card-desc">Monofloral from Chilean Patagonia. Intense aroma and unique antibacterial properties.</p>
+        <span class="card-price">$6.990</span>
+      </div>
+    </article>
+
+    <article class="product-card">
+      <div class="card-img"><img src="img/miel_real_clean.jpg" alt="Multifloral Honey" loading="lazy"></div>
+      <div class="card-body">
+        <p class="card-cat">Honey</p>
+        <h3 class="card-name">Multifloral Honey</h3>
+        <p class="card-desc">Blend of wildflowers from the central valley. Mild, versatile and balanced in flavor.</p>
+        <span class="card-price">$5.490</span>
+      </div>
+    </article>
+
+    <article class="product-card">
+      <div class="card-img"><img src="img/hibiscus_real_clean.jpg" alt="Hibiscus" loading="lazy"></div>
+      <div class="card-body">
+        <p class="card-cat">Infusions</p>
+        <h3 class="card-name">Flor de Jamaica</h3>
+        <p class="card-desc">100% natural hand-selected hibiscus. Rich in antioxidants, perfect as cold or hot tea.</p>
+        <span class="card-price">$4.990</span>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="section about" id="nosotros">
+  <div class="about-grid">
+    <div class="about-imgs">
+      <img src="img/aceite_real.jpg" alt="Olive oil production">
+      <img src="img/miel_real.jpg" alt="Artisanal honey">
+    </div>
+    <div class="about-content">
+      <p class="section-label">Our story</p>
+      <h2 class="section-title">The <em>craft</em> behind every product</h2>
+      <p class="about-body">Green Life was born from the conviction that the best flavors aren't manufactured — they're nurtured. From the olive groves of the Maipo Valley to the flowering fields of the coastal dryland, we work hand in hand with producers committed to excellence.</p>
+      <p class="about-body">Our oils are processed hours after harvest to preserve all their aromatic richness. Our honeys are extracted using artisanal methods that respect the natural cycle of bees.</p>
+      <div class="stats-row">
+        <div class="stat">
+          <span class="stat-num">15+</span>
+          <span class="stat-label">Years of craft</span>
+        </div>
+        <div class="stat">
+          <span class="stat-num">100%</span>
+          <span class="stat-label">Natural & pure</span>
+        </div>
+        <div class="stat">
+          <span class="stat-num">6</span>
+          <span class="stat-label">Unique varieties</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA / CONTACTO -->
+<section class="cta-section" id="contacto">
+  <p class="cta-label">Stay connected</p>
+  <h2 class="cta-title">Taste the <em>difference</em></h2>
+  <p class="cta-sub">Join our community and be the first to know about new harvests, limited editions and exclusive offers.</p>
+  <form class="cta-form" onsubmit="handleSubmit(event)">
+    <input type="email" class="cta-input" placeholder="your@email.com" required>
+    <button type="submit" class="cta-btn">Subscribe</button>
+  </form>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-top">
+    <div class="footer-logo">Green <span>Life</span></div>
+    <ul class="footer-nav">
+      <li><a href="#productos">Products</a></li>
+      <li><a href="#nosotros">About</a></li>
+      <li><a href="#contacto">Contact</a></li>
+    </ul>
+    <div class="footer-social">
+      <a href="#" class="social-link" aria-label="Instagram">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+      </a>
+      <a href="#" class="social-link" aria-label="Facebook">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+      </a>
+    </div>
+  </div>
+  <p class="footer-copy">© 2025 Green Life. All rights reserved. Made with care in Chile.</p>
+</footer>
+
+<script>
+(function() {
+  'use strict';
+
+  // Nav scroll
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 30);
+  }, { passive: true });
+
+  // Hamburger
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  hamburger.addEventListener('click', () => {
+    mobileMenu.classList.toggle('open');
+  });
+  mobileMenu.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => mobileMenu.classList.remove('open'));
+  });
+
+  // Smooth scroll
+  document.querySelectorAll('a[href^="#"]').forEach(link => {
+    link.addEventListener('click', e => {
+      const target = document.querySelector(link.getAttribute('href'));
+      if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
+    });
+  });
+
+  // Card entrance animation
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.product-card').forEach(c => observer.observe(c));
+})();
+
+function handleSubmit(e) {
+  e.preventDefault();
+  const btn = e.target.querySelector('button');
+  btn.textContent = '✓ Subscribed!';
+  btn.style.background = '#5C6B3A';
+  e.target.reset();
+  setTimeout(() => {
+    btn.textContent = 'Subscribe';
+    btn.style.background = '';
+  }, 3000);
+}
+</script>
+</body>
+</html>
